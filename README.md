@@ -28,8 +28,11 @@ https://docs.docker.com/samples/rails/
 - this plus updating some versions
 
 ## steps
+```
 > docker-compose run --no-deps web rails new . --force --database=postgresql
 > sudo chown -R $USER:$USER .
 > docker-compose build
 > docker-compose up
 > docker-compose run web rake db:create
+> docker-compose up
+```
