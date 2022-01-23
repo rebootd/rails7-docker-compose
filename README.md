@@ -1,57 +1,35 @@
-# Intro
+# README
 
-This is a repository made following the guidelines on the following Dockerfile website: https://docs.docker.com/samples/rails/
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-It contains the following:
+Things you may want to cover:
 
-- Ruby latest image (3.0.3 as of today (21/12/2021))
-- Rails 7 ~> 7.0.0
-- PostgreSQL ~> 1.1
+* Ruby version
 
-Run the following line to generate the project. For following steps (database, build) check the link above.
-```
-docker-compose run --no-deps web rails new . --force --database=postgresql
-```
+* System dependencies
 
-## Docker files examples
+* Configuration
 
-### Dockerfile
-```
-# syntax=docker/dockerfile:1
-FROM ruby:latest
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
-WORKDIR /myapp
-COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
-RUN bundle install
+* Database creation
 
-# Add a script to be executed every time the container starts.
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 3000
+* Database initialization
 
-# Configure the main process to run when running the image
-CMD ["rails", "server", "-b", "0.0.0.0"]
-```
+* How to run the test suite
 
-### docker-compose.yml
-```
-version: "3.9"
-services:
-  db:
-    image: postgres
-    volumes:
-      - ./tmp/db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: password
-  web:
-    build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    volumes:
-      - .:/myapp
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
-```
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+## article
+https://docs.docker.com/samples/rails/
+- this plus updating some versions
+
+## steps
+> docker-compose run --no-deps web rails new . --force --database=postgresql
+> sudo chown -R $USER:$USER .
+> docker-compose build
+> docker-compose up
+> docker-compose run web rake db:create
