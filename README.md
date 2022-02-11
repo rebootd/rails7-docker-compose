@@ -35,4 +35,6 @@ https://docs.docker.com/samples/rails/
 > docker-compose up
 > docker-compose run web rake db:create
 > docker-compose up
+# attach to the running container, example container name: rails7-docker-compose_web_1
+> docker exec -i -t rails7-docker-compose_web_1 /bin/bash
 ```
