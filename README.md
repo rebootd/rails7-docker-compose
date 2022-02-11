@@ -18,6 +18,7 @@ https://docs.docker.com/samples/rails/
 
 ## steps
 ```
+> touch Gemfile.lock
 > docker-compose run --no-deps web rails new . --force --database=postgresql
 > sudo chown -R $USER:$USER .
 > docker-compose build
